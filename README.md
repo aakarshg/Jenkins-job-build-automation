@@ -47,6 +47,11 @@ The biggest risks associated with not performing continuous integration is it's 
 
 Q3. What are some reasons why a company may use a dedicated build team?
 
+Usually companies prefers to use a dedicated build team because of the following reasons:
+* Reduction of operating costs associated with not having a build team to take care of build failures
+* They serve as the incharge to work with configuration management 
+* They are always there to take care of building verification scripts.
+* To ensure that someone is tasked with building software.
 
 
 Q4. What are some barriers to applying continuous integration in priorierty contexts?
