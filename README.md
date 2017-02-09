@@ -8,7 +8,7 @@ Unityid: agopi
 
 
 ####INSTRUCTIONS
-* 
+* Edit the inventory file with the IP address and also reflect same changes everywhere else
 * 
 * 
 * 
@@ -22,7 +22,7 @@ Unityid: agopi
 References: http://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/ec2-example-creating-an-instance.html
 
 ###Screencast
-Here's the link to screencast: 
+Here's the link to screencast gif: 
 
 ###Running the job
 
