@@ -22,7 +22,7 @@ Unityid: agopi
 References: http://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/ec2-example-creating-an-instance.html
 
 ###Screencast
-Here's the link to screencast gif: 
+Here's the link to screencast: ![gif](https://github.ncsu.edu/agopi/HW1-B/blob/master/final.gif)
 
 ###Running the job
 
