@@ -27,7 +27,11 @@ Q1. What are some benefits of continuous integration?
 
 Continuous Integration is largely beneficical because it holds the following advantages:
 * It ensures that the software is ready for deployment. Thus, allowing the deployment whenever it's necessary. 
-* It makes it easier to detect any bugs and provisions to fix them quicker. 
+* It makes it easier to detect any bugs and provisions to fix them quicker.
+* CI Allows for faster iterations.
+* It can enforce a specific workflow
+* It makes integration easier
+* Less time for debugging.
 
 
 Q2. What are some risks of not using continuous integration?
