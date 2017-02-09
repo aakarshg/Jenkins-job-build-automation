@@ -55,4 +55,6 @@ There are a lot of concerns that can be heard in cases where continuous integrat
 * Costs associated with the building the infrastructure, which plays an important role in cases of small companies. Although, the initial investment is high, it should be noted that it saves a lot in the long run.
 * Exorbitant size of code is usually a big barrier ex: Google
 * Complex software which acts as hinderance because of lack of ease associated with automation
+* Most are ready to shift to CI in the future.
+* When projects don't have much automated tests 
 
