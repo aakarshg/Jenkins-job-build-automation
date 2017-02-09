@@ -1,0 +1,84 @@
+---
+- hosts: nodes
+
+  vars:
+    packages:
+      - python-dev
+      - python-pip
+      - gcc
+      - python-setuptools
+      - java
+      - jenkins
+
+  tasks:
+    - name: Install git
+      apt: pkg=git state=present
+      become: yes
+    - name: Java repo
+      shell: sudo add-apt-repository ppa:openjdk-r/ppa
+      become: yes
+    - name: Update list
+      shell: sudo apt-get update
+      become: yes
+    - name: Install Java jdk
+      apt: pkg=openjdk-8-jdk state=present
+      become: yes
+    - name: update alternatives
+      shell: sudo update-alternatives --config java
+      become: yes
+    - name: update alternatives
+      shell: sudo update-alternatives --config javac
+      become: yes
+    - name: Update the package list
+      shell: wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
+      become: yes
+    - name: Get the list
+      command: sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+      become: yes
+    - name: Update the list
+      command: apt-get update
+      become: yes
+    - name: Install Jenkins
+      apt: pkg=jenkins state=present
+      become: yes
+    - name: Installing maven
+      apt: pkg=maven state=present
+      become: yes
+    #copying files
+    - name: Downloading job.xml file
+      shell: wget https://transfer.sh/Pmtoi/testjob.xml
+      become: yes
+    - name: Downloading config.xml file
+      shell: wget https://transfer.sh/KK09S/config.xml
+      become: yes
+    - name: Copying config file to jenkins directory
+      shell: sudo cp config.xml  /var/lib/jenkins
+    - name: Disable Jenkins Setup Page
+      shell: sed -i '/JAVA_ARGS="-Djava.awt.headless=true"/c\JAVA_ARGS="-Djava.awt.headless=true -Djenkins.install.runSetupWizard=false"' /etc/default/jenkins
+      sudo: yes
+    - name: Restart
+      shell: service jenkins restart
+      sudo: yes
+    - name: Wait untils Jenkins web API is available
+      shell: curl --head --silent http://localhost:8080/cli/
+      register: result
+      until: result.stdout.find("200 OK") != -1
+      retries: 12
+      delay: 5
+    - name: Get the CLI java file
+      command: wget http://192.168.33.20:8080/jnlpJars/jenkins-cli.jar
+      become: yes
+    - name: Download github plugin
+      shell: java -jar jenkins-cli.jar -s http://192.168.33.20:8080/ install-plugin https://github.com/jenkinsci/github-plugin/archive/v1.25.1.tar.gz
+    - name: Getting the password file
+      shell: sudo cp /var/lib/jenkins/secrets/initialAdminPassword /home/vagrant
+      become: yes
+    - name: Create jenkins job
+      shell: cat testjob.xml | java -jar jenkins-cli.jar -s http://192.168.33.20:8080/ create-job job3
+      become: yes
+    - name: Building the job
+      shell: sudo java -jar jenkins-cli.jar -s http://192.168.33.20:8080/ build job3
+    # emit a debug message with each package
+    - debug:
+        msg: "{{ item }}"
+      with_items: "{{packages}}"
