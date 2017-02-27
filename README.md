@@ -15,4 +15,4 @@ The script ans.yml contains script to install jenkins and other dependencies nec
 
 
 ###Screencast
-Here's the link to screencast: ![gif](https://github.ncsu.edu/agopi/HW1-B/blob/master/final.gif)
+Here's the link to screencast: ![gif](https://github.com/aakarshg/Jenkins-job-build-automation/blob/master/final.gif)
